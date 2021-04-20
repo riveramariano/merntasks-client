@@ -11,10 +11,10 @@ const ListadoProyectos = () => {
 	// OBTENER PROYECTOS CUANDO CARGA EL COMPONENTE
 	useEffect(() => {
 		obtenerProyectos();
-	}, [obtenerProyectos]);
+	}, []);
 
 	// VALIDAR SI TIENE CONTENIDO
-	if (proyectos.length === 0) return null;
+	if (proyectos.length === 0) return <p>No hay Proyectos</p>;
 
 	return (
 		<ul className="listado-proyectos">
