@@ -1,6 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import proyectoContext from '../../context/proyectos/proyectoContext';
+import tareaContext from '../../context/tareas/tareaContext';
 
 const Tarea = ({ tarea }) => {
+
+    // OBTENER EL STATE DE PROYECTOS
+    const proyectosContext = useContext(proyectoContext);
+    const { proyecto } = proyectosContext;
+
+    // OBTENER EL STATE DE TAREA
+    const tareasContext = useContext(tareaContext);
+    const { eliminarTarea, obtenerTareas, modificarEstado, tareaActual } = tareasContext;
+
+    // ARRAY DESTRUCTURING - EXTRAER PROYECTO ACTUAL
+    const [proyectoActual] = proyecto;
+
+    // FUNCION QUE ELIMINA TAREA
+    const tareaEliminar = id => {
+        eliminarTarea(id);
+        obtenerTareas(proyectoActual.id);
+    }
+
+    // FUNCION QUE MODIFICA EL ESTADO
+    const cambiarEstado = tarea => {
+        if (tarea.estado) {
+            tarea.estado = false;
+        } else {
+            tarea.estado = true;
+        }
+        modificarEstado(tarea);
+    }
+
+    // FUNCION QUE SELECCIONA UNA TAREA
+    const seleccionarTarea = tarea => {
+        tareaActual(tarea);
+    }
+
     return (
         <li className="tarea sombra">
             <p>{tarea.nombre}</p>
@@ -11,6 +46,7 @@ const Tarea = ({ tarea }) => {
                         <button
                             type="button"
                             className="completo"
+                            onClick={() => cambiarEstado(tarea)}
                         >Completo</button>
                     )
                     :
@@ -18,6 +54,7 @@ const Tarea = ({ tarea }) => {
                         <button
                             type="button"
                             className="incompleto"
+                            onClick={() => cambiarEstado(tarea)}
                         >Incompleto</button>
                     )
                 }
@@ -25,11 +62,13 @@ const Tarea = ({ tarea }) => {
             <div className="acciones">
                 <button
                     type="button"
-                    className="btn btn-primario"
+                    className="btn btn-secundario"
+                    onClick={() => seleccionarTarea(tarea)}
                 >Editar</button>
                 <button
                     type="button"
-                    className="btn btn-secundario"
+                    className="btn btn-primario"
+                    onClick={() => tareaEliminar(tarea.id)}
                 >Eliminar</button>
             </div>
         </li>
