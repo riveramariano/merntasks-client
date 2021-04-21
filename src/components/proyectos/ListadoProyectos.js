@@ -12,6 +12,7 @@ const ListadoProyectos = () => {
 	// OBTENER PROYECTOS CUANDO CARGA EL COMPONENTE
 	useEffect(() => {
 		obtenerProyectos();
+		// eslint-disable-next-line
 	}, []);
 
 	// VALIDAR SI TIENE CONTENIDO
