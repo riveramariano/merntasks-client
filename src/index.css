@@ -105,6 +105,10 @@ a {
   background-color: var(--blanco);
 }
 
+.cerrar-sesion {
+  color: white;
+}
+
 .alerta {
   position: fixed;
   top: 0;
@@ -414,6 +418,7 @@ aside  {
   text-align: center;
   width: 100%;
 }
+
 @media (min-width:768px) {
   .alerta {
       width: auto;

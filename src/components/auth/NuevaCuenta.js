@@ -1,12 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import alertaContext from '../../context/alertas/alertaContext';
+import authContext from '../../context/autenticacion/authContext';
 
-const NuevaCuenta = () => {
+const NuevaCuenta = (props) => {
 
     // EXTRAER LOS VALORES DEL CONTEXT
     const alertasContext = useContext(alertaContext);
     const { alerta, mostrarAlerta } = alertasContext;
+
+    const authsContext = useContext(authContext);
+    const { mensaje, autenticado, registrarUsuario } = authsContext;
+
+    // EN CASO DE QUE EL USUARIO SE HAYA LOGUEADO, REGISTRADO O SEA UN DUPLICADO
+    useEffect(() => {
+        // SI ESTA AUTENTICADO PASA A PROYECTOS
+        if (autenticado) {
+            props.history.push('/proyectos');
+        }
+        // SI HAY UN ERROR, MANDA UN MSG
+        if (mensaje) {
+            mostrarAlerta(mensaje.msg, mensaje.categoria);
+        }
+    }, [mensaje, autenticado, props.history, mostrarAlerta]);
 
     // STATE PARA NUEVA CUENTA
     const [usuario, setUsuario] = useState({
@@ -45,12 +61,17 @@ const NuevaCuenta = () => {
         }
 
         // LOS 2 PASSWORD SEAN IGUALES
-        if(password !== confirmar) {
+        if (password !== confirmar) {
             mostrarAlerta('Los Passwords deben ser Iguales', 'alerta-error');
             return;
         }
 
         // PASARLO AL ACTION
+        registrarUsuario({
+            nombre,
+            email,
+            password
+        });
 
     }
 
