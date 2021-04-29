@@ -10,14 +10,14 @@ const Tarea = ({ tarea }) => {
 
     // OBTENER EL STATE DE TAREA
     const tareasContext = useContext(tareaContext);
-    const { eliminarTarea, obtenerTareas, modificarEstado, tareaActual } = tareasContext;
+    const { eliminarTarea, obtenerTareas, actualizarTarea, tareaActual } = tareasContext;
 
     // ARRAY DESTRUCTURING - EXTRAER PROYECTO ACTUAL
     const [proyectoActual] = proyecto;
 
     // FUNCION QUE ELIMINA TAREA
     const tareaEliminar = id => {
-        eliminarTarea(id);
+        eliminarTarea(id, proyectoActual._id);
         obtenerTareas(proyectoActual.id);
     }
 
@@ -28,7 +28,7 @@ const Tarea = ({ tarea }) => {
         } else {
             tarea.estado = true;
         }
-        modificarEstado(tarea);
+        actualizarTarea(tarea);
     }
 
     // FUNCION QUE SELECCIONA UNA TAREA
@@ -68,7 +68,7 @@ const Tarea = ({ tarea }) => {
                 <button
                     type="button"
                     className="btn btn-primario"
-                    onClick={() => tareaEliminar(tarea.id)}
+                    onClick={() => tareaEliminar(tarea._id)}
                 >Eliminar</button>
             </div>
         </li>
