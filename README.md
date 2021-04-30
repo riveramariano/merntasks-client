@@ -2,6 +2,10 @@
 
 Website link [MERNTasks](https://merntasks-mrivera.netlify.app/).
 
+## Summary
+
+This is my first big application usign React, hope you liked it :), any suggestions or recommendations dm me.
+
 ## Scope
 
 Create a web page that allows the user to add tasks and subtasks to manage them online (it has a certain resemblance to the Trello tool). This project also has a registration and login that will validate the user to show only the information pertaining to it. 
@@ -23,6 +27,9 @@ In the development of this project, I learned:
 - To create redirects.
 - To connect a backend on Heroku.
 - To create a Netlify redirect. 
+
+### Tech Stack
+- MERN (MongoDB, Express.js, React.js, Node.js).
 
 ### Run Locally
 
