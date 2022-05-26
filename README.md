@@ -1,6 +1,7 @@
 # MERNTasks
 
 Website link [MERNTasks](https://merntasks-mrivera.netlify.app/).
+Email: admin@admin.com - Password: 123456
 
 ## Summary
 
