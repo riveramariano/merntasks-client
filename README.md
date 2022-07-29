@@ -35,7 +35,7 @@ In the development of this project, I learned:
 
 ### Run Locally
 
-- Clone the repository `https://github.com/RiveraMariano/merntasks-client.git`.
+- Clone the repository `https://github.com/riveramariano/merntasks-client.git`.
 - Open the cmd and get the project route.
 - Run `npm install` for the dependencies.
 - Run `npm start` (The project should run in the default browser).
